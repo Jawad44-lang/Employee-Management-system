@@ -1,0 +1,6 @@
+{
+  "name": "Siphron Project & Payroll Hub",
+  "description": "High-fidelity project management, timeline tracking, and employee payroll dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
