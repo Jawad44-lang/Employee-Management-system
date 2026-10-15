@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { AppProvider, useApp } from './context/AppContext.jsx';
 import Navbar from './components/Navbar.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import Employees from './pages/Employees.jsx';
+import AttendanceAndLeaves from './pages/AttendanceAndLeaves.jsx';
 import MyTask from './pages/MyTask.jsx';
 import Report from './pages/Report.jsx';
 import EmployeePayroll from './pages/EmployeePayroll.jsx';
@@ -10,6 +12,8 @@ import NewProjectModal from './components/NewProjectModal.jsx';
 import ExportDataModal from './components/ExportDataModal.jsx';
 import EditProfileModal from './components/EditProfileModal.jsx';
 import PayslipModal from './components/PayslipModal.jsx';
+import AddEmployeeModal from './components/AddEmployeeModal.jsx';
+import EmployeeProfileDrawer from './components/EmployeeProfileDrawer.jsx';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
 
 function MainLayout() {
@@ -54,6 +58,8 @@ function MainLayout() {
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
           >
             {activeTab === 'dashboard' && <Dashboard />}
+            {activeTab === 'employees' && <Employees />}
+            {activeTab === 'leaves' && <AttendanceAndLeaves />}
             {activeTab === 'mytask' && <MyTask />}
             {activeTab === 'report' && <Report />}
             {activeTab === 'payroll' && <EmployeePayroll />}
@@ -61,11 +67,13 @@ function MainLayout() {
         </AnimatePresence>
       </main>
 
-      {/* Global Modals */}
+      {/* Global Modals & Drawers */}
       <NewProjectModal />
       <ExportDataModal />
       <EditProfileModal />
       <PayslipModal />
+      <AddEmployeeModal />
+      <EmployeeProfileDrawer />
 
       {/* Floating Notification Toast with Spring Animation */}
       <AnimatePresence>

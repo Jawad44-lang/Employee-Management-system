@@ -247,10 +247,9 @@ export default function EmployeePayroll() {
                 const net = gross + (emp.bonus || 0) - (emp.deductions || 0);
 
                 return (
-                  <motion.tr
+                  <tr
                     key={emp.id}
-                    whileHover={{ backgroundColor: 'rgba(248, 250, 252, 0.8)' }}
-                    className="transition-colors"
+                    className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 transition-colors duration-150 cursor-pointer"
                   >
                     {/* Employee Profile & Flag */}
                     <td className="py-3.5 pr-4 whitespace-nowrap">
@@ -345,7 +344,7 @@ export default function EmployeePayroll() {
                         <span>Payslip</span>
                       </motion.button>
                     </td>
-                  </motion.tr>
+                  </tr>
                 );
               })}
             </tbody>

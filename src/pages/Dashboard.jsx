@@ -744,10 +744,9 @@ export default function Dashboard() {
                     );
 
                     return (
-                      <motion.tr
+                      <tr
                         key={task.id}
-                        whileHover={{ backgroundColor: 'rgba(248, 250, 252, 0.8)' }}
-                        className="group transition-colors"
+                        className="group hover:bg-slate-50/80 dark:hover:bg-slate-800/60 transition-colors duration-150 cursor-pointer"
                       >
                         {/* Project Name */}
                         <td className="py-3.5 font-medium text-slate-900 dark:text-white pr-4">
@@ -840,7 +839,7 @@ export default function Dashboard() {
                             )}
                           </AnimatePresence>
                         </td>
-                      </motion.tr>
+                      </tr>
                     );
                   })}
                 </tbody>
