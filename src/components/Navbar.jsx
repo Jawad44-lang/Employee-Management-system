@@ -116,32 +116,32 @@ export default function Navbar() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="relative bg-[#EDEFF6] dark:bg-slate-800 p-1 rounded-full flex items-center border border-slate-200/80 dark:border-slate-700/80 shadow-xs cursor-pointer select-none transition-colors"
+            className="relative w-[62px] h-[32px] bg-[#E2E6EF] dark:bg-slate-800 p-[3px] rounded-full flex items-center justify-between border border-slate-300/70 dark:border-slate-700/80 shadow-inner cursor-pointer select-none transition-all duration-200 hover:border-slate-400/80 dark:hover:border-slate-600 focus:outline-hidden"
             title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
             aria-label="Toggle theme"
           >
-            {/* Sliding Thumb */}
+            {/* Sliding Thumb - perfectly calculated 3px inset and symmetric travel */}
             <motion.div
               layout
-              transition={{ type: 'spring', stiffness: 500, damping: 32 }}
-              className={`absolute top-1 bottom-1 w-7 rounded-full shadow-sm transition-colors ${
+              transition={{ type: 'spring', stiffness: 520, damping: 32 }}
+              className={`absolute top-[3px] w-[26px] h-[26px] rounded-full shadow-sm transition-all duration-200 ${
                 theme === 'light'
-                  ? 'left-7 bg-white'
-                  : 'left-1 bg-slate-900 border border-slate-700'
+                  ? 'left-[33px] bg-white ring-1 ring-slate-900/10 shadow-slate-300/80'
+                  : 'left-[3px] bg-slate-950 border border-slate-700/80 shadow-black/50'
               }`}
             />
 
-            <div className="relative z-10 w-7 h-7 flex items-center justify-center">
+            <div className="relative z-10 w-[26px] h-[26px] flex items-center justify-center pointer-events-none">
               <Moon
                 className={`w-3.5 h-3.5 transition-colors duration-200 ${
-                  theme === 'dark' ? 'text-purple-300' : 'text-slate-400'
+                  theme === 'dark' ? 'text-purple-300 fill-purple-400/25' : 'text-slate-400'
                 }`}
               />
             </div>
-            <div className="relative z-10 w-7 h-7 flex items-center justify-center">
+            <div className="relative z-10 w-[26px] h-[26px] flex items-center justify-center pointer-events-none">
               <Sun
                 className={`w-3.5 h-3.5 transition-colors duration-200 ${
-                  theme === 'light' ? 'text-amber-500' : 'text-slate-400'
+                  theme === 'light' ? 'text-amber-500 fill-amber-500/20' : 'text-slate-400 dark:text-slate-500'
                 }`}
               />
             </div>
