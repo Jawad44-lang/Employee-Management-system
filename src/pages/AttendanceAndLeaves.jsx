@@ -260,7 +260,11 @@ export default function AttendanceAndLeaves() {
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                   {pastRequests.map((req) => (
-                    <tr key={req.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 transition-colors cursor-default">
+                    <tr
+                      key={req.id}
+                      onClick={() => showNotification(`Leave record for ${req.employeeName} (${req.status})`)}
+                      className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 transition-colors cursor-pointer group"
+                    >
                       <td className="py-3 font-semibold text-slate-900 dark:text-white">{req.employeeName}</td>
                       <td className="py-3 text-slate-500">{req.leaveType}</td>
                       <td className="py-3 font-mono">{req.daysCount} days</td>
@@ -311,7 +315,11 @@ export default function AttendanceAndLeaves() {
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {teamMembers.map((emp) => (
-                  <tr key={emp.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 transition-colors cursor-default">
+                  <tr
+                    key={emp.id}
+                    onClick={() => showNotification(`Clock logs for ${emp.name}: In ${emp.clockIn || '09:00 AM'}, Out ${emp.clockOut || '05:30 PM'}`)}
+                    className="hover:bg-slate-50/80 dark:hover:bg-slate-800/60 transition-colors cursor-pointer group"
+                  >
                     <td className="py-3.5 font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
                       <img src={emp.avatar} alt={emp.name} className="w-7 h-7 rounded-full object-cover" />
                       <span>{emp.name}</span>

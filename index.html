@@ -3,32 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Siphron Enterprise EMS & Dashboard</title>
-    <meta name="description" content="Enterprise Employee Management System, project tracking, attendance, leave approval, and payroll administration." />
-    <meta property="og:title" content="Siphron Enterprise EMS & Dashboard" />
-    <meta property="og:description" content="Enterprise Employee Management System, project tracking, attendance, leave approval, and payroll administration." />
+    <title>Siphron Project & Payroll Hub</title>
+    <meta name="description" content="High-fidelity project management, employee management, and payroll dashboard." />
+    <meta property="og:title" content="Siphron Project & Payroll Hub" />
+    <meta property="og:description" content="High-fidelity project management, employee management, and payroll dashboard." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     
-    <!-- Extension and interceptor compatibility guard for window.fetch -->
+    <!-- Chrome extension interceptor compatibility guard -->
     <script>
       (function() {
+        // Prevent extension errors from bubbling or crashing the application
+        window.addEventListener('error', function(e) {
+          if (e.filename && e.filename.startsWith('chrome-extension:')) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            return true;
+          }
+          if (e.message && e.message.includes('fetch') && e.message.includes('getter')) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(e) {
+          if (e.reason && String(e.reason).includes('chrome-extension:')) {
+            e.stopImmediatePropagation();
+            e.preventDefault();
+            return true;
+          }
+        }, true);
+
+        // Define getter/setter for window.fetch
         try {
-          const originalFetch = window.fetch ? window.fetch.bind(window) : null;
-          let currentFetch = originalFetch;
-          Object.defineProperty(window, 'fetch', {
-            get: function() {
-              return currentFetch;
-            },
-            set: function(fn) {
-              currentFetch = fn;
-            },
-            configurable: true,
-            enumerable: true,
-          });
-        } catch (e) {
-          // Fallback if environment restricts defineProperty
-        }
+          var originalFetch = window.fetch ? window.fetch.bind(window) : null;
+          var activeFetch = originalFetch;
+          var patchObj = function(obj) {
+            if (!obj) return;
+            try {
+              Object.defineProperty(obj, 'fetch', {
+                get: function() { return activeFetch; },
+                set: function(fn) { activeFetch = fn; },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (err) {}
+          };
+          patchObj(window);
+          if (typeof Window !== 'undefined' && Window.prototype) {
+            patchObj(Window.prototype);
+          }
+        } catch (e) {}
       })();
     </script>
 

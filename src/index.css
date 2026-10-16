@@ -1,16 +1,22 @@
 @import "tailwindcss";
 
-/* Crucial for Tailwind v4 class-based dark mode toggle */
+/* Official Tailwind v4 class-based dark mode selector variant */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   html, body {
-    font-family: 'Outfit', 'Urbanist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    letter-spacing: -0.015em;
+    font-family: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.018em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button, [role="button"], a, select, input[type="checkbox"], input[type="radio"], summary {
+    cursor: pointer;
   }
 }
 
-/* Custom smooth scrollbar */
+/* Custom smooth modern scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -26,15 +32,27 @@
   background: rgba(148, 163, 184, 0.45);
 }
 
-/* Shimmer highlight for cards */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.18);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.35);
+}
+
+/* Dark mode smooth hover transitions */
+.dark tr:hover, .dark [data-hoverable="true"]:hover {
+  background-color: rgba(30, 41, 59, 0.65) !important;
+}
+
+/* Soft pulsating animations for active badges */
 @keyframes softPulse {
   0%, 100% {
     opacity: 1;
     transform: scale(1);
   }
   50% {
-    opacity: 0.6;
-    transform: scale(1.08);
+    opacity: 0.65;
+    transform: scale(1.06);
   }
 }
 
@@ -47,7 +65,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
   }
 }
 
